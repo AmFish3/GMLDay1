@@ -1,0 +1,49 @@
+//get players input via VK
+
+key_left = keyboard_check(vk_left);
+key_right = keyboard_check(vk_right);
+key_space = keyboard_check_pressed(vk_space);
+//calulates the movement
+var move = key_right - key_left;
+
+hsp = move * walksp;
+
+vsp = vsp + grv;
+
+//jump
+
+
+if (place_meeting(x,y+1,wall)) and (key_space)
+{
+	vsp = -7;
+
+}
+
+// collisiotn
+
+if (place_meeting(x+hsp,y,wall))
+{
+	//if there is NOT a collision 
+	while (!place_meeting(x+sign(hsp),y,wall)){
+		x = x + sign(hsp);
+	}
+	hsp = 0;
+	
+
+}
+x = x + hsp;
+
+//gravity and collisiotn
+
+
+if (place_meeting(x,y+vsp,wall))
+{
+	//if there is NOT a collision 
+	while (!place_meeting(x,y+sign(vsp),wall)){
+		y = y + sign(vsp);
+	}
+	vsp = 0;
+	
+
+}
+y = y + vsp;
